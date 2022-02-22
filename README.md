@@ -39,7 +39,7 @@ If instead you choose to contribute code as a solution:
 - Please do not spend more than a few hours on the challenge; we are happy to see progress on a solution and not necessarily a finished one.
   If indeed your solution is “work in progress” please be sure out outline what steps you would take next in order to finish the task.
   
-With a coded solution please submit your work by adding `@philschanely` (https://github.com/philschanely) as an authorized "owner" of your solution's repository. Then on your solution PR add `@philschanely` as a reviewer. We'll take it from there to ensure folks at Kajabi can review your work.
+With a coded solution please submit your work by adding `@philschanely` (https://github.com/philschanely) as an authorized "admin"-level member of your solution's repository. Then on your solution PR add `@philschanely` as a reviewer when it is ready for review. We'll take it from there to ensure folks at Kajabi can review your work.
 
 ## About Thyme's Current Setup
 
