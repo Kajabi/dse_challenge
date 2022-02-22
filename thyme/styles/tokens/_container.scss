@@ -1,0 +1,31 @@
+////
+/// Thyme containers
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme containers token
+///
+$thyme-containers: (
+  tiny: rem(200px),
+  xs: rem(240px),
+  sm: rem(352px),
+  md: rem(544px),
+  lg: rem(736px),
+  xl: rem(1120px),
+  full: rem(1440px),
+);
+
+///
+/// Thyme containers token utility
+///
+/// @param {string} $key [md] The token to retrieve
+///
+/// @return {length} The value retrieved
+///
+@function thyme-container($key: md) {
+  $value: map-get($thyme-containers, $key);
+  @return $value;
+}

@@ -1,0 +1,106 @@
+////
+/// Avatar
+///
+/// @group thyme
+////
+
+
+$-avatar-min-size: rem(32px);
+$-avatar-max-size: rem(128px);
+$-avatar-ring-colors: (
+  charcoal: (
+    main: thyme-color(charcoal, 500),
+    bg: thyme-color(grey, 200)
+  ),
+  purple: (
+    main: thyme-color(purple),
+    bg: thyme-color(purple, 100)
+  ),
+  sage: (
+    main: thyme-color(sage),
+    bg: thyme-color(sage, 100)
+  ),
+  yellow: (
+    main: thyme-color(yellow),
+    bg: thyme-color(yellow, 100)
+  ),
+  orange: (
+    main: thyme-color(orange),
+    bg: thyme-color(orange, 100)
+  ),
+  red: (
+    main: thyme-color(red),
+    bg: thyme-color(red, 100)
+  )
+);
+
+.thyme-avatar {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+  grid-template-areas: "full";
+  align-items: center;
+  justify-items: center;
+  position: relative;
+  width: $-avatar-min-size;
+  height: $-avatar-min-size;
+  border-radius: thyme-border(radius-round);
+  background-color: thyme-color(primary, 100);
+}
+
+.thyme-avatar--centered {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// Set up color variations
+@each $color, $settings in $-avatar-ring-colors {
+  .thyme-avatar--#{"" + $color} {
+    color: map-get($settings, main);
+    background-color: map-get($settings, bg);
+  }
+}
+
+.thyme-avatar__badge {
+  position: absolute;
+  z-index: thyme-z-index(default, 3);
+  bottom: 0;
+  right: 0;
+  background-color: thyme-color(white);
+  border-radius: thyme-border(radius-round);
+
+  i {
+    display: flex;
+  }
+}
+
+.thyme-avatar__initials {
+  grid-area: full;
+  width: 100%;
+  text-align: center;
+  color: thyme-color(primary);
+  fill: thyme-color(primary);
+
+  @extend %t-thyme-body-xsmall-bold;
+
+  @each $color, $settings in $-avatar-ring-colors {
+    .thyme-avatar--#{"" + $color} & {
+      color: map-get($settings, main);
+      fill: map-get($settings, main);
+    }
+  }
+
+  text {
+    text-anchor: middle;
+  }
+}
+
+.thyme-avatar__image {
+  position: relative;
+  z-index: thyme-z-index(default, 2);
+  grid-area: full;
+  height: 100%;
+  width: 100%;
+  border-radius: thyme-border(radius-round);
+  object-fit: cover;
+}

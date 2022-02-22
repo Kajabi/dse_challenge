@@ -1,0 +1,28 @@
+////
+/// Thyme shadows
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme shadows token
+///
+$thyme-shadows: (
+  sm: (0 2px 4px rgba(thyme-color(black), 0.12), 0 0 2px rgba(thyme-color(black), 0.08)),
+  md: (0 8px 14px rgba(thyme-color(black), 0.16), 0 0 4px rgba(thyme-color(black), 0.08)),
+  lg: (0 8px 40px rgba(thyme-color(black), 0.24)),
+  modal: (0 8px 40px rgba(thyme-color(black), 0.2), 0 0 4px rgba(thyme-color(black), 0.1)),
+);
+
+///
+/// Thyme shadow token utility
+///
+/// @param {string} $key [md] The token to retrieve
+///
+/// @return {*} The value retrieved
+///
+@function thyme-shadow($key: md) {
+  $value: map-get($thyme-shadows, $key);
+  @return $value;
+}

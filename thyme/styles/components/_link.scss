@@ -1,0 +1,85 @@
+////
+/// Link modifiers
+///
+/// @group thyme
+////
+
+
+.thyme-link {
+  display: inline-flex;
+  position: relative;
+  max-width: 100%;
+  min-width: 0; /* the is needed so that truncation work when the link doesn't have an explicit width set  */
+
+  @include thyme-focus-outline($outline-offset-inline: 6px, $outline-offset-block: 0);
+  @include thyme-focus-outline--update-color(thyme-color(primary));
+}
+
+.thyme-link--launch .t-thyme--truncate,
+.thyme-type a[target="_blank"]:not(.thyme-link--no-launch):not([class*="icon-right-launch"]) .t-thyme--truncate {
+  &::after {
+    margin-left: thyme-spacing(2xs);
+    margin-right: thyme-spacing(2xs);
+    @include thyme-icon-base(launch, sm);
+  }
+}
+
+.thyme-link--help,
+.thyme-link--help-icon-only {
+  position: relative;
+
+  &::before {
+    @include thyme-icon-base(question-circle, lg);
+
+    color: thyme-color(grey, 500);
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: 0;
+
+    &::before {
+      color: thyme-color(charcoal);
+    }
+  }
+
+  .thyme-page-heading__title & {
+    margin-left: thyme-spacing(xs);
+  }
+}
+
+.thyme-link--help {
+  display: inline-flex;
+  align-items: center;
+
+  &::before {
+    margin-right: thyme-spacing(xs);
+  }
+}
+
+.thyme-link--help-icon-only {
+  @include thyme-focus-outline($outline-offset-inline: 4px, $outline-offset-block: 2px);
+  @include thyme-focus-outline--update-color(thyme-color(primary));
+}
+
+.thyme-link--subtext {
+  @include thyme-focus-outline--update-color(currentColor);
+
+  display: inline-block;
+  position: relative;
+  padding: 0 thyme-spacing(2xs);
+  color: thyme-color(charcoal, 200);
+  text-decoration: underline;
+  border-radius: thyme-border(radius-small);
+
+  &:hover {
+    color: thyme-color(charcoal, 400);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: thyme-color(charcoal, 400);
+    text-decoration: none;
+  }
+}

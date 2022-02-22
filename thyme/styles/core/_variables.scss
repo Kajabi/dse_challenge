@@ -1,0 +1,116 @@
+////
+/// Global variables
+///
+/// @group thyme
+////
+
+///
+/// Base Font CDN path
+///
+$thyme-font-cdn-root: "https://sage.kajabi-cdn.com/fonts";
+
+///
+/// Active underline configuration
+///
+$thyme-active-underline-configs: (
+  height: rem(3px),
+  color: thyme-color(primary),
+  radius: thyme-border(radius),
+);
+
+///
+/// Assistant height shared by layout components
+///
+$thyme-assistant-height: rem(56px);
+
+///
+/// Banner heights for page offsets
+///
+$thyme-banner-heights: (
+  default: rem(48px),
+  ladera: rem(60px),
+);
+
+///
+/// Field configurations
+///
+$thyme-field-configs: (
+  // Border treatments
+  border-radius: thyme-border(radius),
+  border-width: rem(1px),
+  box-shadow-size: 0 0 0 rem(1px),
+  // Sizing
+  height: rem(40px),
+  padding: thyme-spacing(sm),
+  padding-label: thyme-spacing(2xs),
+  // Outer spacing
+  bottom-gap: thyme-spacing(),
+);
+
+///
+/// Field coloring
+///
+$thyme-field-colors: (
+  border: thyme-color(grey, 300),
+  default: thyme-color(charcoal),
+  disabled: thyme-color(grey, 400),
+  disabled-background: thyme-color(grey, 100),
+  error: thyme-color(red),
+  label-background: thyme-color(white),
+  success: thyme-color(primary),
+);
+
+// $thyme-field
+
+///
+/// Radio button colors
+///
+$thyme-radio-colors: (
+  checked: thyme-color(primary),
+  checked-disabled: thyme-color(primary, 200),
+  checked-hover: thyme-color(primary, 400),
+  checked-inner: thyme-color(white),
+  default: thyme-color(grey, 400),
+  hover: thyme-color(grey, 500),
+);
+
+///
+/// Radio button size
+///
+$thyme-radio-size: rem(16px);
+
+///
+/// Tab colors shared by components such as tabs and choices
+///
+$thyme-tab-colors: (
+  default: thyme-color(charcoal, 100),
+  active: thyme-color(charcoal, 500),
+  disabled: thyme-color(grey, 500),
+);
+
+///
+/// Standard text colors
+///
+$thyme-text-colors: (
+  body: thyme-color(charcoal, 400),
+  heading: thyme-color(charcoal, 500),
+);
+
+///
+/// Toolbar border styles
+///
+$thyme-toolbar-button-borders: (
+  default: 0 0 0 1px thyme-color(grey, 300),
+  focus: 0 0 0 2px thyme-color(primary),
+  hover: 0 0 0 1px thyme-color(grey, 400),
+  active-hover: 0 0 0 2px thyme-color(primary, 400),
+);
+
+///
+/// Transitions
+///
+$thyme-transitions: (
+  default: 0.1s ease-in-out,
+  input: 0.2s ease-in-out
+);
+// TODO: Audit use of transition values

@@ -1,0 +1,45 @@
+////
+/// Thyme color palette
+///
+/// @group thyme
+////
+
+
+// When colors are updated here, update in sage_tokens.rb as well.
+
+///
+/// Thyme color palette token from Style Dictionary.
+/// See `style-dictionary/tokens/color/base.json`.
+///
+$thyme-colors: $sd-thyme-color;
+
+///
+/// Thyme default color
+///
+$thyme-color-default: $sd-thyme-color-base-charcoal-400-hex;
+
+///
+/// Thyme default color name for debug output.
+///
+$thyme-color-default-name: "charcoal 400";
+
+
+///
+/// Thyme breakpoints token utility
+///
+/// @param {string} $base the color token to retrieve
+/// @param {number} $value [300] the tint or shade to retrieve
+///
+/// @return {color} the value retrieved
+///
+@function thyme-color($base, $value: 300) {
+  $color: sd-thyme-color($base, $value, hex);
+  
+  @if $color {
+    @return $color;
+  }
+
+  @warn "Could not retrieve color: #{$base} #{$value}. Got `#{$color}` from `sd-thyme-color()`. Default color #{$thyme-color-default-name} (`#{$thyme-color-default}`) returned instead.";
+  
+  @return $thyme-color-default;
+}

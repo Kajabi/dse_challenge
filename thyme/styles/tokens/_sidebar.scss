@@ -1,0 +1,28 @@
+////
+/// Thyme sidebars
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme sidebars token
+///
+$thyme-sidebars: (
+  sm: rem(240px),
+  md: rem(320px),
+  lg: rem(400px),
+  xl: 80vw
+);
+
+///
+/// Thyme sidebar token utility
+///
+/// @param {string} $key [sm] The token to retrieve
+///
+/// @return {length} The value retrieved
+///
+@function thyme-sidebar($key: sm) {
+  $value: map-get($thyme-sidebars, $key);
+  @return $value;
+}

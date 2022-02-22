@@ -1,0 +1,86 @@
+////
+/// Thyme line height/leading
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme raw line height/leading token (non-responsive)
+///
+$thyme-line-heights: (
+  xs: thyme-baseline(5), // 20
+  sm: thyme-baseline(6), // 24
+  md: thyme-baseline(7), // 28
+  lg: thyme-baseline(8), // 32
+  xl: thyme-baseline(9), // 36
+);
+
+///
+/// Thyme responsive line height/leading custom props
+///
+:root {
+  --thyme-line-height-body-xs: #{map-get($thyme-line-heights, xs)};
+  --thyme-line-height-body-sm: #{map-get($thyme-line-heights, sm)};
+  --thyme-line-height-body: #{map-get($thyme-line-heights, md)};
+  --thyme-line-height-h6: #{map-get($thyme-line-heights, md)};
+  --thyme-line-height-h5: #{map-get($thyme-line-heights, md)};
+  --thyme-line-height-h4: #{map-get($thyme-line-heights, md)};
+  --thyme-line-height-h3: #{map-get($thyme-line-heights, md)};
+  --thyme-line-height-h2: #{map-get($thyme-line-heights, lg)};
+  --thyme-line-height-h1: #{map-get($thyme-line-heights, lg)};
+}
+
+@media screen and (min-width: thyme-breakpoint(lg-min)) {
+  :root {
+    // --thyme-line-height-body-xs: same
+    // --thyme-line-height-body-sm: same
+    --thyme-line-height-body: #{map-get($thyme-line-heights, sm)};
+    --thyme-line-height-h6: #{map-get($thyme-line-heights, sm)};
+    // --thyme-line-height-h5: same
+    // --thyme-line-height-h4: same
+    --thyme-line-height-h3: #{map-get($thyme-line-heights, lg)};
+    // --thyme-line-height-h2: same
+    --thyme-line-height-h1: #{map-get($thyme-line-heights, xl)};
+  }
+}
+
+///
+/// Thyme line height token utility
+///
+/// @param {string} $key [body] The token to retrieve.
+///    By default, this should be a type spec token.
+///    If the next parameter is `false` then this should be a line height token.
+/// @param {bool} $responsive [true] Whether or not retrieve a responsive css custom property (based on type specs) or a flat value (based on line-height tokens).
+///
+/// @example scss - Responsive setting
+///   .thyme-box {
+///     line-height: thyme-line-height(body-sm);
+///   }
+///
+///   // Output
+///   .thyme-box {
+///     line-height: var(--thyme-line-height-body-sm);
+///   }
+///
+/// @example scss - Flat setting
+///   .thyme-box {
+///     @include thyme-line-height(md, false);
+///   }
+///
+///   // Output
+///   .thyme-box {
+///     line-height: 1.75rem;
+///   }
+///
+/// @return {length} The value retrieved
+///
+@function thyme-line-height($key: body, $responsive: true) {
+  @if ($responsive) {
+    @return var(--thyme-line-height-#{$key});
+  }
+
+  @else {
+    @return map-get($thyme-line-heights, $key);
+  }
+}

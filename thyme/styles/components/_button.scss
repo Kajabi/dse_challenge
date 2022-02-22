@@ -1,0 +1,688 @@
+////
+/// Button
+///
+/// @group thyme
+////
+
+/* stylelint-disable selector-max-compound-selectors */
+
+//
+// Base style variables
+//
+$-btn-transition: map-get($thyme-transitions, default);
+$-btn-border-radius: thyme-border(radius);
+$-btn-shadow-base: thyme-shadow(sm);
+$-btn-icon-only-hover-size: rem(26px);
+$-btn-icon-only-focus-size: rem(28px);
+
+$-btn-base-styles: (
+  primary: (
+    default: (
+      color: thyme-color(white),
+      background-color: thyme-color(primary),
+      ring-color: thyme-color(primary, 400),
+    ),
+    hover: (
+      color: thyme-color(white),
+      background-color: thyme-color(primary, 400),
+    ),
+    focus: (
+      color: thyme-color(white),
+      background-color: thyme-color(primary),
+    ),
+    disabled: (
+      color: thyme-color(primary, 200),
+      background-color: thyme-color(primary, 100),
+    )
+  ),
+  secondary: (
+    default: (
+      color: thyme-color(charcoal, 400),
+      background-color: thyme-color(white),
+      ring-color: thyme-color(charcoal),
+    ),
+    hover: (
+      color: thyme-color(charcoal, 400),
+      background-color: thyme-color(grey, 100),
+    ),
+    focus: (
+      color: thyme-color(charcoal, 400),
+      background-color: thyme-color(white),
+    ),
+    disabled: (
+      color: thyme-color(grey, 500),
+      background-color: thyme-color(grey, 300),
+    )
+  ),
+  danger: (
+    default: (
+      color: thyme-color(white),
+      background-color: thyme-color(red),
+      ring-color: thyme-color(red, 400),
+    ),
+    hover: (
+      color: thyme-color(white),
+      background-color: thyme-color(red, 400),
+    ),
+    focus: (
+      color: thyme-color(white),
+      background-color: thyme-color(red),
+    ),
+    disabled: (
+      color: thyme-color(red, 200),
+      background-color: thyme-color(red, 100),
+    )
+  ),
+);
+
+$-btn-subtle-styles: (
+  primary: (
+    default: thyme-color(primary),
+    hover: thyme-color(primary),
+    hover-background: thyme-color(primary, 100),
+    focus: thyme-color(primary),
+    focus-outline: thyme-color(primary, 400),
+    disabled: thyme-color(primary, 200),
+  ),
+  secondary: (
+    default: thyme-color(charcoal, 200),
+    hover: thyme-color(charcoal, 200),
+    hover-background: thyme-color(grey, 200),
+    focus: thyme-color(charcoal, 200),
+    focus-outline: thyme-color(charcoal),
+    disabled: thyme-color(grey, 500),
+  ),
+  danger: (
+    default: thyme-color(red),
+    hover: thyme-color(red),
+    hover-background: thyme-color(red, 100),
+    focus: thyme-color(red),
+    focus-outline: thyme-color(red, 400),
+    disabled: thyme-color(red, 200),
+  ),
+);
+
+//
+// Custom variables
+//
+$-btn-interactive-label-icon-size: rem(24px);
+$-btn-loading-min-height: rem(36px);
+
+
+// stylelint-disable max-nesting-depth
+:root {
+  --icon-block-padding: #{rem(6px)};
+
+  @media screen and (min-width: thyme-breakpoint(lg-min)) {
+    --icon-block-padding: #{rem(4px)};
+  }
+}
+
+.thyme-btn {
+  @extend %t-thyme-body-med;
+  @include thyme-button-style-reset();
+  @include thyme-focus-outline;
+
+  $-padding-block: rem(6px);
+
+  display: inline-flex;
+  align-self: inherit;
+  align-items: center;
+  padding: $-padding-block thyme-spacing(sm);
+  text-align: left; // Prevents text alignment issue when inner text is truncated
+  border: 0;
+  border-radius: $-btn-border-radius;
+  transition: $-btn-transition;
+  transition-property: border, background-color, box-shadow;
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    @include thyme-button-style-disabled;
+  }
+
+  &:focus:not(:disabled):not([aria-disabled="true"]),
+  &:active:not(:disabled):not([aria-disabled="true"]) {
+    .thyme-dropdown__item > & {
+      @include thyme-focus-outline--update-color(transparent);
+    }
+  }
+
+  // Contextual modifications
+  &.thyme-banner__close {
+    position: absolute;
+  }
+
+  .thyme-dropdown--contained .thyme-dropdown__trigger &,
+  .thyme-panel-controls__tabs-dropdown .thyme-dropdown__trigger &,
+  .thyme-panel-controls__toolbar .thyme-dropdown__trigger &,
+  .thyme-panel-controls__bulk-actions .thyme-dropdown__trigger &,
+  .thyme-toolbar .thyme-dropdown__trigger & {
+    @include thyme-focus-outline--update-color(transparent);
+
+    width: inherit;
+    border-radius: inherit;
+
+    &:hover {
+      background-color: thyme-color(white);
+    }
+  }
+
+  .thyme-panel-controls__bulk-actions > &,
+  .thyme-panel-controls__toolbar > &,
+  .thyme-panel-controls__toolbar-btn-group > &,
+  .thyme-panel-controls__pagination > &,
+  .thyme-toolbar > &
+  .thyme-toolbar__group > & {
+    position: relative;
+    z-index: thyme-z-index(default);
+    box-shadow: map-get($thyme-toolbar-button-borders, default);
+    border: 0;
+
+    @include thyme-focus-outline--update-color(transparent);
+
+    &:hover {
+      z-index: thyme-z-index(default, 1);
+      box-shadow: map-get($thyme-toolbar-button-borders, hover);
+      background-color: thyme-color(white);
+    }
+
+    &:focus {
+      z-index: thyme-z-index(default, 2);
+      box-shadow: map-get($thyme-toolbar-button-borders, focus);
+    }
+  }
+
+  .thyme-dropdown__item > & {
+    width: 100%;
+    padding-top: rem(9px);
+    padding-bottom: rem(9px);
+    border-radius: 0;
+  }
+
+  .thyme-dropdown__trigger > & {
+    line-height: thyme-line-height(body);
+  }
+
+  .thyme-dropdown__trigger--select & {
+    font-weight: thyme-font-weight(regular);
+  }
+
+  .thyme-expandable-card--align-arrow-right & {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    &::before {
+      margin-right: 0;
+    }
+
+    &::after {
+      transform: translate3D(-50%, -50%, 0);
+    }
+  }
+
+  .thyme-input-group & {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .thyme-label & {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    width: $-btn-interactive-label-icon-size;
+    margin: auto 0;
+    border-radius: 0 thyme-border(radius-x-large) thyme-border(radius-x-large) 0;
+
+    &::before {
+      transform: translateY(1px); /* needed as thyme-font-size(sm) equates to 13px, not 14px. This 1px is accounting for that 1px */
+      font-size: thyme-font-size(sm);
+    }
+
+    &::after {
+      width: $-btn-interactive-label-icon-size;
+      height: $-btn-interactive-label-icon-size;
+      border-radius: 0 thyme-border(radius-x-large) thyme-border(radius-x-large) 0;
+    }
+
+    &:first-child:not(:last-child) {
+      margin-right: thyme-spacing(xs);
+    }
+
+    + & {
+      margin-left: 0;
+    }
+
+    &.thyme-btn--tag::before {
+      font-size: thyme-font-size(md, false);
+    }
+  }
+
+  .thyme-label__value & {
+    width: rem(28px);
+  }
+
+  .thyme-hero__body & {
+    margin-top: thyme-spacing(md);
+  }
+
+  .thyme-page-heading__actions & {
+    &:not(:last-child) {
+      margin-right: thyme-spacing();
+    }
+  }
+
+  .thyme-page-heading__toolbar & {
+    &:not(:last-child) {
+      margin-right: thyme-spacing();
+    }
+  }
+
+  .thyme-sortable__item-actions & {
+    &:not(:last-child) {
+      margin-right: thyme-spacing(sm);
+    }
+  }
+
+  .thyme-input-group & {
+    position: absolute;
+    top: rem(2px);
+    right: rem(1px);
+    background-color: thyme-color(white);
+    box-shadow: rem(-1px) 0 0 0 thyme-color(grey, 300);
+
+    @include thyme-focus-outline--update-color(transparent);
+
+    &::before {
+      margin-right: 0;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 rem(2px) thyme-color(primary);
+    }
+  }
+
+  .thyme-panel-controls__toolbar-btn-group > &,
+  .thyme-toolbar__group > & {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: thyme-border(radius);
+      border-bottom-left-radius: thyme-border(radius);
+    }
+
+    &:last-child {
+      border-top-right-radius: thyme-border(radius);
+      border-bottom-right-radius: thyme-border(radius);
+    }
+  }
+
+  .thyme-panel-controls__toolbar-btn-group--expand-collapse > & {
+    border-radius: thyme-border(radius);
+  }
+
+  .thyme-panel-controls__toolbar > &,
+  .thyme-toolbar > &,
+  .thyme-panel-controls__pagination > & {
+    border-radius: thyme-border(radius);
+  }
+
+  .thyme-panel-controls__toolbar > &,
+  .thyme-panel-controls__pagination > & {
+    &:not(:last-child) {
+      margin-right: thyme-spacing(card);
+    }
+  }
+
+  // NOTE: Icon generation consolidated in `core/_icons.scss`
+}
+
+.thyme-btn--is-loading {
+  pointer-events: none;
+
+  &[class*="thyme-btn--icon"]::before {
+    content: "";
+  }
+
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+
+  .thyme-btn__truncate-text {
+    opacity: 0;
+  }
+}
+
+// Generate button style variations
+@each $-style-name, $-styles in $-btn-base-styles {
+  .thyme-btn--#{$-style-name} {
+    @each $-style-type-name, $-style-type-configs in $-styles {
+      @if ($-style-type-name == hover) {
+        &:hover {
+          color: map-get($-style-type-configs, color);
+          background-color: map-get($-style-type-configs, background-color);
+        }
+      }
+      @else if ($-style-type-name == focus) {
+        &:focus,
+        &:active {
+          color: map-get($-style-type-configs, color);
+          background-color: map-get($-style-type-configs, background-color);
+        }
+      }
+      @else if ($-style-type-name == disabled) {
+        &:disabled,
+        &[aria-disabled="true"] {
+          color: map-get($-style-type-configs, color);
+          background-color: map-get($-style-type-configs, background-color);
+          box-shadow: none;
+        }
+      }
+      @else {
+        @include thyme-focus-outline--update-color(map-get($-style-type-configs, ring-color));
+
+        color: map-get($-style-type-configs, color);
+        background-color: map-get($-style-type-configs, background-color);
+
+        .thyme-toolbar > &,
+        .thyme-toolbar__group > & {
+          @include thyme-focus-outline--update-color(transparent);
+        }
+      }
+    }
+
+    &:not(.thyme-btn--subtle):not(:disabled):not([aria-disabled="true"]) {
+      box-shadow: $-btn-shadow-base;
+
+      &.thyme-btn--no-shadow {
+        box-shadow: none;
+      }
+      &.thyme-btn--raised {
+        box-shadow: $-btn-shadow-base;
+      }
+
+      .thyme-toolbar > &:hover,
+      .thyme-toolbar > .thyme-dropdown .thyme-dropdown__trigger &:hover,
+      .thyme-toolbar__group > &:hover,
+      .thyme-toolbar__group > .thyme-dropdown .thyme-dropdown__trigger &:hover {
+        box-shadow: map-get($thyme-toolbar-button-borders, hover);
+      }
+
+      .thyme-toolbar > &:focus,
+      .thyme-toolbar > .thyme-dropdown .thyme-dropdown__trigger &:focus,
+      .thyme-toolbar__group > &:focus,
+      .thyme-toolbar__group > .thyme-dropdown .thyme-dropdown__trigger &:focus {
+        z-index: thyme-z-index(default, 2);
+        box-shadow: map-get($thyme-toolbar-button-borders, focus);
+      }
+    }
+  }
+}
+
+// Note: duplicated from _alert.scss; update here when _alert.scss changes
+$-alert-colors: (
+  info: primary,
+  published: sage,
+  success: sage,
+  warning: yellow,
+  danger: red,
+  exceeded: red,
+  reached: orange,
+  approaching: yellow,
+);
+
+// Secondary styles, no shadow variation
+.thyme-btn--secondary {
+  &.thyme-btn--no-shadow {
+    color: thyme-color(charcoal, 400);
+    background-color: thyme-color(white);
+    border: 1px solid thyme-color(grey);
+
+    &:hover {
+      color: thyme-color(charcoal);
+      background-color: thyme-color(white);
+      border: 1px solid thyme-color(grey, 500);
+    }
+
+    &:focus,
+    &:active {
+      color: thyme-color(charcoal);
+      background-color: thyme-color(white);
+      border: 1px solid thyme-color(grey);
+    }
+
+    &[aria-disabled="true"] {
+      color: thyme-color(grey, 500);
+      background-color: thyme-color(white);
+    }
+  }
+
+  &.thyme-alert__primary-action {
+    background-color: transparent;
+
+    @each $name, $color in $-alert-colors {
+      .thyme-alert--#{$name} & {
+        border: 1px solid thyme-color($color, 200);
+
+        &:hover {
+          color: thyme-color(charcoal, 500);
+          border-color: thyme-color($color, 300);
+          background-color: transparent;
+        }
+
+        &:focus,
+        &:active {
+          color: thyme-color(charcoal, 400);
+          border-color: thyme-color($color, 200);
+          background-color: transparent;
+        }
+
+        @include thyme-focus-outline--update-color(thyme-color($color, 400));
+      }
+    }
+  }
+}
+
+.thyme-btn--subtle {
+  padding: 0;
+  box-shadow: none;
+
+  @include thyme-focus-outline($outline-offset-inline: 6px, $outline-offset-block: 0);
+
+  // Generate button style variations
+  @each $-style-name, $-styles in $-btn-subtle-styles {
+    &.thyme-btn--#{$-style-name} {
+      color: map-get($-styles, default);
+      background-color: transparent;
+
+      // TODO: refactor the subtle button hover state, after Thyme 3.0 conversion
+      &::after {
+        border-color: transparent;
+      }
+
+      &:not(:focus):hover {
+        color: map-get($-styles, hover);
+
+        &::after {
+          z-index: 0;
+          background-color: map-get($-styles, hover-background);
+          opacity: 1;
+        }
+
+        &::before,
+        span {
+          z-index: 1;
+        }
+      }
+
+      &:focus,
+      &:active {
+        color: map-get($-styles, focus);
+        background-color: transparent;
+
+        &::after {
+          border-color: map-get($-styles, focus-outline);
+        }
+      }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        color: map-get($-styles, disabled);
+        background-color: transparent;
+      }
+
+      &[class*="icon-only"] {
+        &::after {
+          width: $-btn-icon-only-hover-size;
+          height: $-btn-icon-only-hover-size;
+        }
+
+        &:hover::after {
+          border-color: transparent;
+          opacity: 1;
+        }
+
+        &:focus::after {
+          width: $-btn-icon-only-focus-size;
+          height: $-btn-icon-only-focus-size;
+          border-color: map-get($-styles, focus-outline);
+
+        }
+
+        .thyme-label & {
+          @include thyme-focus-outline($outline-offset-inline: -2px, $outline-offset-block: -2px);
+          @include thyme-focus-outline--update-color(map-get($-styles, default));
+
+          position: absolute; /* this keeps the button inside a label within the visual bounds of the label component */
+
+          &::after {
+            border-radius: 0 thyme-border(radius-x-large) thyme-border(radius-x-large) 0;
+          }
+        }
+      }
+    }
+  }
+
+  .thyme-assistant & {
+    color: thyme-color(grey, 100);
+
+    @include thyme-focus-outline--update-color(thyme-color(white));
+
+    &:hover {
+      color: thyme-color(white);
+    }
+
+    &:focus {
+      color: thyme-color(white);
+    }
+  }
+
+
+  &.thyme-alert__secondary-action {
+    color: thyme-color(charcoal, 400);
+    text-decoration: underline;
+    border: 0;
+
+    @each $name, $color in $-alert-colors {
+      .thyme-alert--#{$name} & {
+        &.thyme-btn {
+          border-color: transparent;
+
+          &:hover::after {
+            background: transparent;
+            border-color: transparent;
+            opacity: 0;
+          }
+
+          &:focus,
+          &:active {
+            color: thyme-color(charcoal, 400);
+            border-color: thyme-color($color, 200);
+          }
+
+          &:focus::after,
+          &:active::after {
+            border-color: thyme-color($color, 400);
+          }
+        }
+
+        @include thyme-focus-outline--update-color(thyme-color($color, 400));
+      }
+    }
+  }
+}
+
+.thyme-btn--small {
+  @extend %t-thyme-body-small-med;
+}
+
+.thyme-btn--align-end {
+  align-self: flex-end;
+  float: right;
+}
+
+.thyme-btn--full-width {
+  align-self: stretch;
+  justify-content: center;
+  width: 100%;
+}
+
+.thyme-btn__truncate-text {
+  @include truncate;
+  pointer-events: none;
+
+  .thyme-dropdown__trigger & {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .thyme-expandable-card--align-arrow-right & {
+    order: -1;
+  }
+}
+
+// Button groups allow for several buttons together to be spaced appropriately
+.thyme-btn-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: thyme-breakpoint(sm-min)) {
+    flex-wrap: nowrap;
+  }
+}
+
+@each $-key, $-value in $thyme-spacings {
+  .thyme-btn-group--gap-#{$-key} {
+    gap: thyme-spacing($-key);
+  }
+}
+
+.thyme-btn-group--wrap {
+  @media screen and (min-width: thyme-breakpoint(sm-min)) {
+    flex-wrap: wrap;
+  }
+}
+
+.thyme-btn-group--align-center {
+  justify-content: center;
+}
+
+.thyme-btn-group--align-end {
+  justify-content: flex-end;
+}
+
+.thyme-btn-group--align-space-between {
+  justify-content: space-between;
+}
+
+.thyme-btn-group--border-top {
+  padding-top: thyme-spacing(lg);
+  border-top: 1px solid thyme-color(grey, 300);
+}

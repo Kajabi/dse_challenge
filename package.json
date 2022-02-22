@@ -1,0 +1,10 @@
+{
+  "name": "dse_challenge",
+  "version": "1.0.0",
+  "description": "A challenge for Design System Engineer candidates at Kajabi",
+  "author": "Kajabi Design System Services <phil.schanely@kajabi.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd thyme && yarn dev"
+  }
+}

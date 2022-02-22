@@ -1,0 +1,90 @@
+////
+/// Thyme type_pairings tokens
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme Type_pairings token
+///
+$thyme-type-pairings: (
+  4xl: (
+    font-size: thyme-font-size(4xl, false),
+    line-height: thyme-line-height(xl),
+  ),
+  3xl: (
+    font-size: thyme-font-size(3xl, false),
+    line-height: thyme-line-height(lg),
+  ),
+  2xl: (
+    font-size: thyme-font-size(2xl, false),
+    line-height: thyme-line-height(lg),
+  ),
+  xl: (
+    font-size: thyme-font-size(xl, false),
+    line-height: thyme-line-height(md),
+  ),
+  lg: (
+    font-size: thyme-font-size(lg, false),
+    line-height: thyme-line-height(md),
+  ),
+  md: (
+    font-size: thyme-font-size(md, false),
+    line-height: thyme-line-height(md),
+  ),
+  sm: (
+    font-size: thyme-font-size(sm, false),
+    line-height: thyme-line-height(sm),
+  ),
+  xs: (
+    font-size: thyme-font-size(xs, false),
+    line-height: thyme-line-height(sm),
+  ),
+  2xs: (
+    font-size: thyme-font-size(2xs, false),
+    line-height: thyme-line-height(xs),
+  ),
+);
+
+///
+/// Thyme Type Pairing token utility
+///
+/// @param {string} $key [default] The token to retrieve
+///
+@function thyme-type-pairing($key: md) {
+  $value: map-get($thyme-type-pairings, $key);
+  @return $value;
+}
+
+
+///
+/// Thyme Type Pairing mixin
+///
+/// @param {string} $key [body] The token to retrieve.
+///   If the `$responsive` parameter is true this is used to retrieve values from
+///   the responsive CSS custom properties `--thyme-font-size-#{$key}` and `--thyme-line-height-#{$key}`.
+///   Otherwise it is used to retrieve from `thyme-raw-type-pairings`.
+///
+/// @param {bool} $responsive [false] Whether or not to use the responsive css custom properties
+///   for the provided pairing.
+///
+@mixin thyme-type-pairing($key: body, $responsive: true) {
+  // Responsive type pairings use the type spec key
+  // to retrieve responsive custom props from the corresponding token utility function
+  @if ($responsive == true) {
+    font-size: thyme-font-size($key);
+    line-height: thyme-line-height($key);
+  }
+
+  // Non-responsive type pairings need to look up values
+  // from the pairing token here in this file
+  @else {
+    $pairings: thyme-type-pairing($key);
+
+    @if ($pairings) {
+      font-size: map-get($pairings, font-size);
+      line-height: map-get($pairings, line-height);
+    }
+  }
+}

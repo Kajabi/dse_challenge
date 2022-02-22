@@ -1,0 +1,25 @@
+////
+/// Spacer utility
+///
+/// @group thyme
+////
+
+
+@each $-name, $-value in $thyme-spacings {
+  $suffix: "-#{$-name}";
+  
+  @if $-name == md {
+    $suffix: "";
+  }
+  
+  @each $-box-side in (
+    top,
+    right,
+    bottom,
+    left
+  ) {
+    .thyme-spacer-#{$-box-side}#{$suffix} {
+      margin-#{$-box-side}: $-value;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+////
+/// Thyme container
+///
+/// @group thyme
+////
+
+
+.thyme-container {
+  width: 100%;
+  margin: 0 auto;
+
+  &:not([class*="thyme-container--"]) {
+    max-width: thyme-container(full);
+  }
+}
+
+@each $-name, $-size in $thyme-containers {
+  .thyme-container--#{$-name} {
+    max-width: thyme-container($-name);
+  }
+}

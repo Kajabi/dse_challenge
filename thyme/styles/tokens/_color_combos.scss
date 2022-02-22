@@ -1,0 +1,32 @@
+////
+/// Thyme color combinations
+///
+/// @group thyme
+////
+
+///
+/// Thyme color combinations token from Style Dictionary.
+/// See `style-dictionary/tokens/color/combos.json`.
+///
+$thyme-color-combos: $sd-thyme-color-combos;
+
+///
+/// Thyme color combinations token utility
+///
+/// @param {string} $color-key [draft] The color token to retrieve
+/// @param {string} $combo-set-key [default] The color set to retrieve
+/// @param {string} $color-type [foreground] The detail of the set to retrieve
+///
+/// @return {color} The value retrieved
+///
+@function thyme-color-combo($color-key: draft, $combo-set-key: default, $color-type: foreground) {
+  $color: sd-thyme-color-combos($color-key, $combo-set-key, $color-type);
+
+  @if $color {
+    @return $color;
+  }
+
+  @warn "Could not retrieve color combo: #{$color-key} #{$combo-set-key} #{$color-type}. Got `#{$color}` from `sd-thyme-color-combos()`. Default color #{$thyme-color-default-name} (`#{$thyme-color-default}`) returned instead.";
+  
+  @return $thyme-color-default;
+}

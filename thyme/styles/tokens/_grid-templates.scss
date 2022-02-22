@@ -1,0 +1,34 @@
+////
+/// Thyme grid
+///
+/// @group thyme
+////
+
+///
+/// Stores a full map of grid configurationsfrom Style Dictionary.
+/// See `style-dictionary/tokens/content/grid-template.json`.
+/// Result is a map of codes.
+///
+/// @see parse-morse-code
+///
+$thyme-grid-templates: ();
+@each $-ltr, $-map in $sd-thyme-content-grid-template {
+  $-code: map-get($-map, code);
+  $thyme-grid-templates: map-merge(
+    $thyme-grid-templates,
+    (
+      #{$-ltr}: parse-morse-code($-code)
+    )
+  );
+}
+
+///
+/// Thyme grid templates token utility
+///
+/// @param {string} $key [md] The token to retrieve
+///
+/// @return {map} The value retrieved.
+///
+@function thyme-grid-template($key) {
+  @return map-get($thyme-grid-templates, $key);
+}

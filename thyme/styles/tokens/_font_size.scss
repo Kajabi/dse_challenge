@@ -1,0 +1,71 @@
+////
+/// Thyme font sizes
+///
+/// @group thyme
+////
+
+///
+/// Thyme raw font sizes token (non-responsive)
+///
+/// Thyme allows for responsive typography, that uses these raw font sizes as the source of truth for its possible sizes.
+///
+$thyme-font-sizes: (
+  2xs: rem(12px),
+  xs: rem(13px),
+  sm: rem(14px),
+  md: rem(16px),
+  lg: rem(18px),
+  xl: rem(20px),
+  2xl: rem(23px),
+  3xl: rem(26px),
+  4xl: rem(29px)
+);
+
+///
+/// Thyme responsive font sizes custom props
+///
+/// Responsive font sizes use CSS custom properties to apply a raw font size for a given breakpoint range.
+///
+:root {
+  --thyme-font-size-body-xs: #{map-get($thyme-font-sizes, 2xs)};
+  --thyme-font-size-body-sm: #{map-get($thyme-font-sizes, sm)};
+  --thyme-font-size-body: #{map-get($thyme-font-sizes, md)};
+  --thyme-font-size-h6: #{map-get($thyme-font-sizes, md)};
+  --thyme-font-size-h5: #{map-get($thyme-font-sizes, md)};
+  --thyme-font-size-h4: #{map-get($thyme-font-sizes, lg)};
+  --thyme-font-size-h3: #{map-get($thyme-font-sizes, xl)};
+  --thyme-font-size-h2: #{map-get($thyme-font-sizes, 2xl)};
+  --thyme-font-size-h1: #{map-get($thyme-font-sizes, 3xl)};
+}
+
+@media screen and (min-width: thyme-breakpoint(lg-min)) {
+  :root {
+    // --thyme-font-size-body-xs is same
+    --thyme-font-size-body-sm: #{map-get($thyme-font-sizes, xs)};
+    --thyme-font-size-body: #{map-get($thyme-font-sizes, sm)};
+    --thyme-font-size-h6: #{map-get($thyme-font-sizes, sm)};
+    --thyme-font-size-h5: #{map-get($thyme-font-sizes, lg)};
+    --thyme-font-size-h4: #{map-get($thyme-font-sizes, xl)};
+    --thyme-font-size-h3: #{map-get($thyme-font-sizes, 2xl)};
+    --thyme-font-size-h2: #{map-get($thyme-font-sizes, 3xl)};
+    --thyme-font-size-h1: #{map-get($thyme-font-sizes, 4xl)};
+  }
+}
+
+///
+/// Thyme font size token utility (responsive)
+///
+/// @param {string} $key [body] The token to retrieve
+/// @param {bool} $responsive [true] Whether or not retrieve a responsive css custom property or a flat value
+///
+/// @return {length}} The value retrieved
+///
+@function thyme-font-size($key: body, $responsive: true) {
+  @if ($responsive) {
+    @return var(--thyme-font-size-#{$key});
+  }
+
+  @else {
+    @return map-get($thyme-font-sizes, $key);
+  }
+}

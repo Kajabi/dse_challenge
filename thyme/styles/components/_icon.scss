@@ -1,0 +1,207 @@
+////
+/// Icon
+///
+/// @group thyme
+////
+
+$-icon-font-path: "#{$thyme-font-cdn-root}/sage" !default;
+$-icon-font-version: 4;
+
+// NOTE: These should be kept in sync with line-height pairings from `packages/thyme-assets/lib/stylesheets/tokens/_line_height.scss`
+$-icon-beside-type: (
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "body",
+  "body-sm",
+  "body-xs",
+);
+
+// NOTE: These should be kept in sync with line-height pairings from `packages/thyme-assets/lib/stylesheets/tokens/_line_height.scss`
+$-icon-beside-type: (
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "body",
+  "body-sm",
+  "body-xs",
+);
+
+// Icon font setup
+@font-face {
+  font-family: "Thyme";
+  src: url("#{$-icon-font-path}/Thyme.woff?v=#{$-icon-font-version}");
+  src: url("#{$-icon-font-path}/Thyme.woff?v=#{$-icon-font-version}") format("woff"),
+    url("#{$-icon-font-path}/Thyme.ttf?v=#{$-icon-font-version}") format("truetype"),
+    url("#{$-icon-font-path}/Thyme.svg?v=#{$-icon-font-version}") format("svg"),
+    url("#{$-icon-font-path}/Thyme.eot?v=#{$-icon-font-version}") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+// Build icons as `thyme-icon-icon-name` based on the map in `tokens/_icon`
+@each $icon-name, $icon-code in $thyme-icons {
+  @each $size-name, $size in $thyme-icon-sizes {
+    $suffix: "-#{$size-name}";
+
+    @if $size-name == md {
+      $suffix: "";
+    }
+
+    .thyme-icon-#{$icon-name}#{$suffix} {
+      width: $size;
+      height: $size;
+
+      &::before {
+        @include thyme-icon-base($icon-name, $size-name);
+      }
+    }
+  }
+
+  // Other icons generated here
+  @include thyme-button-icon-generator($icon-name, $icon-code, only);
+  @include thyme-button-icon-generator($icon-name, $icon-code, left);
+  @include thyme-button-icon-generator($icon-name, $icon-code, right);
+
+  .thyme-tab--icon-#{$icon-name}::before {
+    @include thyme-icon-base($icon-name);
+    margin-right: thyme-spacing(xs);
+  }
+
+  .thyme-choice--icon-#{$icon-name}::before {
+    @include thyme-icon-base($icon-name);
+  }
+
+  .thyme-dropdown__item-control--icon-#{$icon-name}::before {
+    @include thyme-icon-base($icon-name);
+    margin: 0 thyme-spacing(xs) 0 0;
+  }
+
+  .thyme-input__icon .thyme-icon-#{$icon-name} {
+    color: thyme-color(charcoal, 200);
+    line-height: thyme-line-height(body-xs);
+  }
+
+  .thyme-label--icon-#{$icon-name} .thyme-label__value::before {
+    @include thyme-icon-base($icon-name, md);
+    align-self: center;
+    position: relative;
+    margin: 0 thyme-spacing(xs) 0 0;
+  }
+
+  .thyme-label--icon--custom-color .thyme-label__value::before {
+    --thyme-label-custom-icon-color: inherit;
+
+    color: var(--thyme-label-custom-icon-color);
+  }
+
+  .thyme-label__decor-icon--#{$icon-name}::before {
+    @include thyme-icon-base($icon-name, md);
+    align-self: center;
+  }
+
+  .thyme-page-heading__toolbar-icon-#{$icon-name} {
+    white-space: nowrap;
+
+    &::before {
+      margin-right: thyme-spacing(xs);
+
+      @include thyme-icon-base($icon-name);
+    }
+  }
+
+  .thyme-status-icon--#{$icon-name} {
+    &::before {
+      @include thyme-icon-base($icon-name);
+    }
+  }
+}
+
+//
+// Sets up height and line-height adjustments to better align next to
+// various responsive type specs
+//
+@each $type-spec in $-icon-beside-type {
+  .thyme-icon--adjacent-type-#{$type-spec} {
+    height: thyme-line-height($type-spec);
+
+    &::before {
+      height: thyme-line-height($type-spec);
+      line-height: thyme-line-height($type-spec);
+    }
+  }
+}
+
+@keyframes thyme-icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.thyme-icon-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  width: thyme-spacing(xl);
+  height: thyme-spacing(xl);
+  background-color: var(--background-color, inherit);
+
+  [class*="thyme-icon-"] {
+    display: flex;
+    color: var(--color, currentColor);
+  }
+
+  &:not(.thyme-icon-background--circular) {
+    border-radius: thyme-border(radius);
+  }
+
+  @media screen and (max-width: thyme-breakpoint(md-max)) {
+    max-width: thyme-spacing(xl);
+  }
+}
+
+.thyme-icon-background--circular {
+  border-radius: thyme-border(radius-round);
+}
+
+@each $size-name, $size in $thyme-icon-background-sizes {
+  $suffix: "-#{$size-name}";
+
+  .thyme-icon-background-#{$suffix} {
+    width: $size;
+    height: $size;
+    @media screen and (max-width: thyme-breakpoint(md-max)) {
+      max-width: $size;
+    }
+  }
+}
+
+.thyme-icon-background--custom-size {
+  --thyme-icon-background-height: thyme-spacing(xl);
+  --thyme-icon-background-width: thyme-spacing(xl);
+
+  width: var(--thyme-icon-background-width);
+  height: var(--thyme-icon-background-height);
+}
+
+@each $-color, $-values in $thyme-color-combos {
+  $-subtle-values: map-get($-values, subtle);
+  $-bold-values: map-get($-values, bold);
+
+  .thyme-icon-background--#{$-color} {
+    --color: #{thyme-color-combo($-color, default, foreground)};
+    --background-color: #{thyme-color-combo($-color, default, background)};
+  }
+}
+

@@ -1,0 +1,28 @@
+////
+/// Thyme letter spacing/kerning
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme letter spacing/kerning token
+///
+$thyme-letter-spacings: (
+  xs: rem(0.2px),
+  sm: rem(0.3px),
+  md: rem(0.5px),
+  lg: rem(0.8px)
+);
+
+///
+/// Thyme letter spacing token utility
+///
+/// @param {string} $key [sm] The token to retrieve
+///
+/// @return {length} The value retrieved
+///
+@function thyme-letter-spacing($key: sm) {
+  $value: map-get($thyme-letter-spacings, $key);
+  @return $value;
+}

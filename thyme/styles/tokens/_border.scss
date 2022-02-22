@@ -1,0 +1,29 @@
+////
+/// Thyme border tokens
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme borders token
+///
+$thyme-borders: (
+  light: rem(1px) solid thyme-color(grey, 200),
+  default: rem(1px) solid thyme-color(grey, 300),
+  radius-small: rem(4px),
+  radius: rem(6px),
+  radius-large: rem(8px),
+  radius-x-large: rem(100px),
+  radius-round: 50%,
+);
+
+///
+/// Thyme border token utility
+///
+/// @param {string} $key [default] The token to retrieve
+///
+@function thyme-border($key: default) {
+  $value: map-get($thyme-borders, $key);
+  @return $value;
+}

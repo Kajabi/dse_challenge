@@ -1,0 +1,155 @@
+////
+/// Thyme type specs
+///
+/// @group thyme
+////
+
+
+// Base specs to avoid repetition
+$-t-base-spec: (
+  kerning: thyme-letter-spacing(xs),
+  responsive: true,
+  type-pairing: body,
+  weight: thyme-font-weight(),
+);
+$-t-body-small-spec: (
+  kerning: thyme-letter-spacing(xs),
+  responsive: true,
+  type-pairing: body-sm,
+  weight: thyme-font-weight(),
+);
+$-t-body-xsmall-spec: (
+  kerning: thyme-letter-spacing(xs),
+  responsive: true,
+  type-pairing: body-xs,
+  weight: thyme-font-weight(),
+);
+
+///
+/// Main map of type specs. This is used to generate both `%t-` classes for each entry.
+/// These are used to create base classes as well as to apply type specs in
+/// context with `@extend %t-` etc.
+///
+$thyme-type-specs: (
+  // Headings
+  "heading-1": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h1,
+    weight: thyme-font-weight(bold),
+  ),
+  "heading-2": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h2,
+    weight: thyme-font-weight(bold),
+  ),
+  "heading-3": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h3,
+    weight: thyme-font-weight(bold),
+  ),
+  "heading-4": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h4,
+    weight: thyme-font-weight(semibold),
+  ),
+  "heading-5": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h5,
+    weight: thyme-font-weight(semibold),
+  ),
+  "heading-6": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: true,
+    type-pairing: h6,
+    weight: thyme-font-weight(semibold),
+  ),
+  "nav": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: false,
+    type-pairing: md,
+    weight: thyme-font-weight(medium),
+  ),
+  "nav-sub": (
+    kerning: thyme-letter-spacing(sm),
+    responsive: false,
+    type-pairing: sm,
+    weight: thyme-font-weight(meidum),
+  ),
+
+  // Body
+  "body": $-t-base-spec,
+  "body-med": map-merge($-t-base-spec, (
+    weight: thyme-font-weight(medium)
+  )),
+  "body-semi": map-merge($-t-base-spec, (
+    weight: thyme-font-weight(semibold)
+  )),
+  "body-bold": map-merge($-t-base-spec, (
+    weight: thyme-font-weight(bold)
+  )),
+
+  // Body Small
+  "body-small": $-t-body-small-spec,
+  "body-small-med": map-merge($-t-body-small-spec, (
+    weight: thyme-font-weight(medium)
+  )),
+  "body-small-semi": map-merge($-t-body-small-spec, (
+    weight: thyme-font-weight(semibold)
+  )),
+  "body-small-bold": map-merge($-t-body-small-spec, (
+    weight: thyme-font-weight(bold)
+  )),
+
+  // Body XSmall
+  "body-xsmall": $-t-body-xsmall-spec,
+  "body-xsmall-med": map-merge($-t-body-xsmall-spec, (
+    weight: thyme-font-weight(medium)
+  )),
+  "body-xsmall-semi": map-merge($-t-body-xsmall-spec, (
+    weight: thyme-font-weight(semibold)
+  )),
+  "body-xsmall-bold": map-merge($-t-body-xsmall-spec, (
+    weight: thyme-font-weight(bold)
+  )),
+
+  // Additional custom specs
+  // TBD
+);
+
+///
+/// Implements a type spec as CSS properties.
+///
+/// @param {string} $spec-name Name of the type spec to set up
+///
+@mixin thyme-type-spec($spec-name) {
+  $spec-map: map-get($thyme-type-specs, $spec-name);
+
+  @include thyme-type-pairing(
+    $key: map-get($spec-map, type-pairing),
+    $responsive: map-get($spec-map, responsive)
+  );
+
+  font-weight: map-get($spec-map, weight);
+  letter-spacing: map-get($spec-map, kerning);
+}
+
+@each $spec-name, $spec-map in $thyme-type-specs {
+  ///
+  /// Thyme type placeholder/extendables
+  ///
+  /// Follow the `t-thyme-` with the desired type spec token.
+  ///
+  /// @example scss - Usage example
+  ///   .thyme-box__heading {
+  ///     @extend %t-thyme-heading-3;
+  ///   }
+  ///
+  %t-thyme-#{$spec-name} {
+    @include thyme-type-spec($spec-name);
+  }
+}

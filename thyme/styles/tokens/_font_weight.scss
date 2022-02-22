@@ -1,0 +1,28 @@
+////
+/// Thyme font weights
+///
+/// @group thyme
+////
+
+
+///
+/// Thyme font weights token
+///
+$thyme-font-weights: (
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700
+);
+
+///
+/// Thyme font weight token utility
+///
+/// @param {string} $key [regular] The token to retrieve
+///
+/// @return {number} The value retrieved
+///
+@function thyme-font-weight($key: regular) {
+  $value: map-get($thyme-font-weights, $key);
+  @return $value;
+}
