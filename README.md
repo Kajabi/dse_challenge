@@ -4,17 +4,20 @@ _A Code Challenge for Design System Engineer Candidates_
 
 ## Challenge
 
-As a Design System Engineer you’ll be asked to research, sketch, and implement architectural, deployment, and automation solutions for our design system.
-This challenge allows you the opportunity to demonstrate your experience and abilities with a variety of potential related tasks.
+_As a Design System Engineer you’ll be asked to research, sketch, and implement architectural, deployment, and automation solutions for our design system.
+This challenge allows you to demonstrate your experience and abilities with a variety of potential tasks._
 
-Thyme is a fictitious new design system in its very early stages.
-It contains a solid foundation of styles using Sass and a small set of basic React components.
-Since our User Experience Developers specialize in creating components with high-quality markup and styles based on specs provided by our System Design team, we’ve spent little time so far setting up any method for documenting and deploying this library.
+Thyme is a fictitious design system in its very early stages.
+Our System Creation team has laid a solid foundation of styles using Sass and a small set of basic React components built in Next.js just to get the ball rolling.
+Since our System Creation team members specialize in creating components with high-quality markup and styles based on specs provided by our Design team, they've spent little time so far setting up any method for documenting and deploying this library.
 Your challenge is to complete any of the following tasks to help take this blossoming system to the next level.
 
 - Implement a documentation system such as Storybook that more effectively demonstrates the components and their features for developers to use as a reference.
+Consider as well how this documentation solution might include continuous integration and automated deployment to a public url for engineers to access.
 - Establish a delivery pipeline that allows this library of components to be published and consumed by applications such as through some form of NPM package or other similar.
 - Identify aspects of how this existing system is architected that you think present unnecessary challenges for engineers who will use it in context and revise the system accordingly.
+
+Note that for each of these options there is no "wrong" or "right" solution that we're looking for... we're hoping to see _your_ particular experiences and interests shine in your solution.
 
 ## Guidelines
 
@@ -41,7 +44,7 @@ Thyme contains...
 
 - a few components built with React/Next.js. See `thyme/components`.
 - a blossoming style library built with Sass. See `thyme/styles`.
-- a simple demostration page displaying the components and a few variations. See `thyme/pages/index.js`.
+- a simple demonstration page displaying the components and a few variations. See `thyme/pages/index.js`.
 
 The rest of the contents of `thyme` are, for the most part, just part of the standard Next.js initial file set.
 
