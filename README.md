@@ -21,7 +21,7 @@ Note that for each of these options there is no "wrong" or "right" solution that
 
 ## Guidelines
 
-It is completely acceptable to submit just a written plan and estimated effort in lieu of  actually forking the repository and completing actual code work; we’re just as interested in your knowledge, experience, and thought process as your ability to execute on a plan. If you choose this route consider providing the following:
+It is completely acceptable to submit just a written solution plan in lieu of completing actual code work; we’re just as interested in your knowledge, experience, and thought process as your ability to execute on a plan. If you choose this route consider providing the following:
 
 - Identify the problem/task
 - Summarize your solution
