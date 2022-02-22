@@ -1,4 +1,4 @@
-import { ThymeDictionary } from '../dictionary';
+import * as ThymeDictionary from './dictionary';
 
 // TOKENS_COLORS.GREY --> `'grey'`
 export const TOKENS_COLORS = {

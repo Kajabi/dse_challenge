@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThymeClassnames } from '../configs';
 
 const tagPropTypes = PropTypes.oneOfType([
   PropTypes.string,
@@ -32,7 +31,10 @@ Link.defaultProps = {
   truncate: false,
 };
 
-Link.CLASSNAMES = { ...ThymeClassnames.LINK };
+Link.CLASSNAMES = {
+  LAUNCH: 'thyme-link thyme-link--launch',
+  SUBTEXT: 'thyme-link thyme-link--subtext',
+};
 
 Link.tagPropTypes = tagPropTypes;
 

@@ -5,14 +5,13 @@
 
 
 // Functions
-@import "core/functions";
+@import "functions/index";
 
 // Variable Tokens
-@import "dictionary/tokens";
 @import "tokens/index";
 
 // Mixins
-@import "core/mixins/index";
+@import "mixins/index";
 
 // Global Variables
-@import "core/variables";
+@import "variables/index";

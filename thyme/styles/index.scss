@@ -4,27 +4,13 @@
 
 
 // Variables, functions, mixins, and tokens
-@import "consumables";
+@import "consumables/index";
 
 // Base Styles
-@import "core/reboot";
-@import "core/fonts";
-@import "core/typography";
-
-// Layout
-@import "layout/container";
-@import "layout/grid-templates";
+@import "core/index";
 
 // Utilities
-@import "utilities/hidden";
-@import "utilities/spacer";
+@import "utilities/index";
 
 // Components
-@import "components/avatar";
-@import "components/breadcrumbs";
-@import "components/button";
-@import "components/description";
-@import "components/empty_state";
-@import "components/icon";
-@import "components/link";
-@import "components/loader";
+@import "components/index";
