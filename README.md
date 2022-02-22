@@ -38,6 +38,8 @@ If instead you choose to contribute code as a solution:
   Please include with it a statement identifying the problem/task you’re solving and the approach you are taking to solve it.
 - Please do not spend more than a few hours on the challenge; we are happy to see progress on a solution and not necessarily a finished one.
   If indeed your solution is “work in progress” please be sure out outline what steps you would take next in order to finish the task.
+  
+With a coded solution please submit your work by adding `@philschanely` (https://github.com/philschanely) as an authorized "owner" of your solution's repository. Then on your solution PR add `@philschanely` as a reviewer. We'll take it from there to ensure folks at Kajabi can review your work.
 
 ## About Thyme's Current Setup
 
@@ -49,7 +51,7 @@ Thyme contains...
 
 The rest of the contents of `thyme` are, for the most part, just part of the standard Next.js initial file set.
 
-You can run Thyme locally cloning this repository and running:
+You can run Thyme locally by cloning this repository and running:
 
 ```
 yarn install
