@@ -29,14 +29,15 @@ It is completely acceptable to submit just a written plan and estimated effort i
 - Estimate the development effort in days, assuming you were working full time on only this project
 - Outline any dependencies or unknowns that would impact your direction
 
-If you choose to contribute code as a solution:
+With only a written solution please email it to your recruiting contact when complete.
 
-- Similar to above, even if you choose to submit a coded solution, please include with it a statement identifying the problem/task you’re solving and the approach you are taking to solve it.
+If instead you choose to contribute code as a solution:
+
 - In order to help with our review of your solution, you may clone the provided base repository.
-  However, please commit your work onto a branch and set up a PR in GitHub.
-  Use this as a place to also provide additional context around what you’re aiming to achieve, where you left off, and what steps you would take next.
+  Then commit your work onto a branch and set up a PR in GitHub with your changes set to merge into your `main` branch.
+  Please include with it a statement identifying the problem/task you’re solving and the approach you are taking to solve it.
 - Please do not spend more than a few hours on the challenge; we are happy to see progress on a solution and not necessarily a finished one.
-  If indeed your solution is “work in progress” please be sure out outline what steps you would take next in order to finish the work if you were on the job.
+  If indeed your solution is “work in progress” please be sure out outline what steps you would take next in order to finish the task.
 
 ## About Thyme's Current Setup
 
