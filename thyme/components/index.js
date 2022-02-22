@@ -5,7 +5,4 @@ export { Description } from './Description';
 export { EmptyState } from './EmptyState';
 export { Icon } from './Icon';
 export { Loader } from './Loader';
-export {
-  ThymeClassnames,
-  ThymeTokens,
-} from './configs';
+export { ThymeTokens } from './configs';

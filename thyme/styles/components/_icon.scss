@@ -35,12 +35,12 @@ $-icon-beside-type: (
 
 // Icon font setup
 @font-face {
-  font-family: "Thyme";
-  src: url("#{$-icon-font-path}/Thyme.woff?v=#{$-icon-font-version}");
-  src: url("#{$-icon-font-path}/Thyme.woff?v=#{$-icon-font-version}") format("woff"),
-    url("#{$-icon-font-path}/Thyme.ttf?v=#{$-icon-font-version}") format("truetype"),
-    url("#{$-icon-font-path}/Thyme.svg?v=#{$-icon-font-version}") format("svg"),
-    url("#{$-icon-font-path}/Thyme.eot?v=#{$-icon-font-version}") format("embedded-opentype");
+  font-family: "Sage";
+  src: url("#{$-icon-font-path}/Sage.woff?v=#{$-icon-font-version}");
+  src: url("#{$-icon-font-path}/Sage.woff?v=#{$-icon-font-version}") format("woff"),
+    url("#{$-icon-font-path}/Sage.ttf?v=#{$-icon-font-version}") format("truetype"),
+    url("#{$-icon-font-path}/Sage.svg?v=#{$-icon-font-version}") format("svg"),
+    url("#{$-icon-font-path}/Sage.eot?v=#{$-icon-font-version}") format("embedded-opentype");
   font-weight: normal;
   font-style: normal;
   font-display: block;
